@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import autoBind from 'react-autobind';
 
-import '../styles/ParseRupiah.css';
-
 class ParseRupiah extends Component {
   constructor() {
     super();
@@ -25,7 +23,7 @@ class ParseRupiah extends Component {
     autoBind(this);
   }
 
-  onChange() {
+  onChange(event) {
     this.setState({inputValue: event.target.value});
     console.log(event.target.value);
   }

@@ -13,7 +13,7 @@ div {
   flex: 1;
   flex-direction: column;
 }
-.header {
+div.header {
   flex: 0;
   background-color: #d3dfe9;
 }
@@ -21,10 +21,10 @@ h1 {
   color: #007a7c;
   text-align: center;
 }
-.body {
+div.body {
   justify-content: stretch;
 }
-.footer {
+div.footer {
   background-color: #d3dfe9;
   flex: 0;
   align-items: center;
