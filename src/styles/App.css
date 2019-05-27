@@ -1,4 +1,31 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.header {
+  flex: 0;
+  background-color: #d3dfe9;
+}
 h1 {
-  color: #27aedb;
+  color: #007a7c;
   text-align: center;
+}
+.body {
+  justify-content: stretch;
+}
+.footer {
+  background-color: #d3dfe9;
+  flex: 0;
+  align-items: center;
 }
