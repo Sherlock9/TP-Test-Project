@@ -45,3 +45,6 @@ package-lock.json
 
 # Jest
 /coverage
+
+# VS Code
+/.vscode

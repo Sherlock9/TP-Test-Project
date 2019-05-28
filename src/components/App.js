@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import ParseRupiah from './ParseRupiah';
 
+import '../styles/App.css';
+
 class App extends Component {
   render() {
     return (

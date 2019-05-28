@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --open",
     "build": "webpack --mode=production",
     "lint": "eslint . --max-warnings 0",
-    "test-src": "jest --coverage",
+    "test-src": "jest --watch --coverage --colors",
     "test": "npm run lint && npm run test-src"
   },
   "repository": {
@@ -36,6 +36,7 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.2",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
     "react-test-renderer": "^16.8.6",
     "react-testing-library": "^7.0.1",
