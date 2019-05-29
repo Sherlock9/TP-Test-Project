@@ -8,7 +8,7 @@ class ParseRupiah extends Component {
     super();
     this.state = {
       inputValue: '',
-      denomAmount: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      denomAmount: ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
       warningShown: false,
     };
     autoBind(this);
@@ -20,7 +20,8 @@ class ParseRupiah extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.parseInput();
+    let moneyValue = this.parseInput();
+    this.setResults(moneyValue);
   }
 
   parseInput() {
@@ -28,23 +29,22 @@ class ParseRupiah extends Component {
     let rupiahRe = /^(Rp\s*)?(\d+(\.?\d{3})*(,\d{2})?)$/g;
     let reArray = rupiahRe.exec(inputValue);
 
-    // if bad input, run badInput() and quit early
+    // if bad input: reset, add warning, and quit early
     if (reArray == null) {
       this.setState({
-        denomAmount: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        denomAmount: ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
         warningShown: true,
       });
-      return;
+      return 0;
     } else {
       this.setState({
         warningShown: false,
       });
+      let replaceSeparator1 = reArray[2].replace(/\.(\d+)/g, '$1');
+      let replaceSeparator2 = replaceSeparator1.replace(/,(\d+)$/, '.$1');
+      let finalValue = parseFloat(replaceSeparator2);
+      return finalValue;
     }
-
-    let replaceSeparator1 = reArray[2].replace(/\.(\d+)/g, '$1');
-    let replaceSeparator2 = replaceSeparator1.replace(/,(\d+)$/, '.$1');
-    let finalValue = parseFloat(replaceSeparator2);
-    this.setResults(finalValue);
   }
 
   setResults(moneyValue) {
@@ -62,11 +62,13 @@ class ParseRupiah extends Component {
     ];
     let resultsArray = [];
     for (let denom of denominations) {
-      let quotient = Math.floor(moneyValue / denom);
+      let quotient = Math.floor(moneyValue / denom).toString();
       resultsArray.push(quotient);
       moneyValue = moneyValue % denom;
     }
-    resultsArray.push(moneyValue);
+    let remainderValue = Math.round(moneyValue * 100) / 100;
+    let remainderString = remainderValue.toString().replace(/\.(\d+)$/, ',$1');
+    resultsArray.push(remainderString);
     this.setState({denomAmount: resultsArray});
   }
 
@@ -82,13 +84,17 @@ class ParseRupiah extends Component {
               placeholder="Input rupiah amount"
               value={inputValue}
               onChange={this.onChange}
+              onSubmit={this.onSubmit}
             />
+            {/* Button was original sumbit method during creation.
+            It remains due to problems with event.preventDefault() if input alone is used. */}
             <button type="submit" onClick={this.onSubmit}>
               Submit
             </button>
           </form>
         </div>
-        {/* In future, use a more helpful warning that explains what the correct formats are */}
+        {/* Warns the user when they use incorrect formatting */}
+        {/* TODO display an explanation of correct formatting, but not in warning */}
         <div className="bad-input">
           {warningShown && (
             <p className="warning">Your input is not formatted correctly.</p>

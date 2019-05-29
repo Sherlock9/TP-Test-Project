@@ -19,6 +19,7 @@ exports[`App snapshot 1`] = `
         <input
           id="rupiah"
           onChange={[Function]}
+          onSubmit={[Function]}
           placeholder="Input rupiah amount"
           type="text"
           value=""

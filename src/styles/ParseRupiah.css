@@ -13,7 +13,8 @@ input {
   border-bottom: 2px solid #c8ccd4;
   border-radius: 0px;
   font-size: 20px;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: 40px;
 }
 input:focus {
@@ -24,7 +25,10 @@ button {
   background-color: #bbc8dd;
   border: 0px;
   font-size: 20px;
-  margin: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 div.bad-input {
@@ -57,5 +61,5 @@ td {
   text-align: center;
 }
 .table-odd {
-  background-color: #bbc8dd;
+  background-color: #d4d8ec;
 }
